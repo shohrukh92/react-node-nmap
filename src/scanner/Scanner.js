@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
+import { ScanFlags } from './ScanFlags';
+import { ScanTypes } from './ScanTypes';
 
 export class Scanner extends Component {
   constructor(props) {
     super(props);
-    this.api = 'http://localhost:3500/';
+    this.api = 'http://localhost:3500';
   
     this.state = {
       data: null,
       err: null,
       isLoading: false
     };
+
+    this.onScanTypeChange = this.onScanTypeChange.bind(this);
+    this.onScanFlagChange = this.onScanFlagChange.bind(this);
   }
 
-  compo
+  onScanTypeChange(command) {
+    console.log(command);
+  }
+
+  onScanFlagChange(flag) {
+    console.log(flag);
+  }
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    fetch(`${this.api}scan`)
+    // this.fetchData();
+  }
+
+  fetchData() {
+    fetch(`${this.api}/scan`)
       .then(response => response.json())
       .then(data => {
         this.setState({ data, isLoading: false })
@@ -26,10 +41,13 @@ export class Scanner extends Component {
   }
 
   render() {
-    const { isLoading, data, err } = this.state;
+    const { isLoading, data } = this.state;
 
     return (
       <div>
+        <ScanTypes onHandleChange={this.onScanTypeChange} />
+        <ScanFlags onHandleChange={this.onScanFlagChange} />
+
         { isLoading ?
           <div>Loading data...</div> :
           <div>loaded { JSON.stringify(data) }</div>
