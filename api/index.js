@@ -7,7 +7,14 @@ const app = express();
 middlewares.setAppUseConfigs(app);
 
 app.get('/scan', (req, res) => {
-  nmapScan({ range: ['tut.by'], ports: '80-443', flags: ['-v4', '-A'] })
+  nmapScan({
+    range: ['tut.by'],
+    ports: '80-443',
+    flags: [
+      '-v4',
+      // '-A'
+    ]
+  })
     .then(data => res.json(data))
     .catch(() => res.json({}))
 });

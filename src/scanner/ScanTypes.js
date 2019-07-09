@@ -37,26 +37,26 @@ ScanTypes.SCAN_TYPES = [
   {
     value: 1,
     name: 'Интенсивное сканирование',
-    command: 'nmap -T4 -A -v '
+    command: '-T4 -A -v'
   },
   {
     value: 2,
     name: 'Интенсивное сканирование / UPD',
-    command: 'nmap -sS -sU -T4 -A -v '
+    command: '-sS -sU -T4 -A -v'
   },
   {
     value: 3,
     name: 'Интенсивное сканирование / все порты',
-    command: 'nmap -p 1-65535 -T4 -A -v '
+    command: '-p 1-65535 -T4 -A -v'
   },
   {
     value: 4,
     name: 'Пинг-сканирование',
-    command: 'nmap -sn '
+    command: '-sn'
   },
   {
     value: 5,
     name: 'Быстрое сканирование',
-    command: 'nmap -T4 -F '
+    command: '-T4 -F'
   }
 ];

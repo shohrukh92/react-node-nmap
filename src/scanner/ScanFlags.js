@@ -23,11 +23,16 @@ export class ScanFlags extends React.Component {
     this.setState({
       [name]: value
     });
+
+    this.emitChanges({
+      ...this.state,
+      [name]: value
+    })
   }
 
-  componentDidUpdate() {
+  emitChanges(flags) {
     const selectedFlags = ScanFlags.SCAN_FLAGS
-      .filter(item => this.state[item.name])
+      .filter(item => flags[item.name])
       .map(item => item.flag)
       .join(' ');
 
@@ -38,8 +43,7 @@ export class ScanFlags extends React.Component {
     const { state } = this;
     
     return (
-      <form>
-        <div>{ JSON.stringify(state) }</div>
+      <section>
         {ScanFlags.SCAN_FLAGS.map(flag =>
           <FlagCheckbox
             key={flag.name}
@@ -48,7 +52,7 @@ export class ScanFlags extends React.Component {
             {...flag}
           />
         )}
-      </form>
+      </section>
     )
   }
 }
